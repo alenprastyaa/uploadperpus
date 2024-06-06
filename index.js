@@ -5,12 +5,14 @@ import PetugasRoute from "./routes/RoutePetugas.js";
 import PeminjamanRoute from "./routes/RoutePeminjaman.js";
 import RouteAnggota from "./routes/RouteAnggota.js";
 import RoutePengembalian from "./routes/RoutePengembalian.js";
+
 import RoutePengembalianDetail from "./routes/RoutePengembalianDetail.js";
+
 
 const app = express();
 // const sessionStore = SequelizeStore(session.Store);
 
-const PORT = "3000";
+const PORT = "5000";
 
 // db.sync();
 
