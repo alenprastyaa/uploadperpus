@@ -5,9 +5,8 @@ import PetugasRoute from "./routes/RoutePetugas.js";
 import PeminjamanRoute from "./routes/RoutePeminjaman.js";
 import RouteAnggota from "./routes/RouteAnggota.js";
 import RoutePengembalian from "./routes/RoutePengembalian.js";
-
+import RoutePeminjamanDetail from "./routes/RoutePeminjamanDetail.js";
 import RoutePengembalianDetail from "./routes/RoutePengembalianDetail.js";
-
 
 const app = express();
 // const sessionStore = SequelizeStore(session.Store);
@@ -22,6 +21,7 @@ app.use(PeminjamanRoute);
 app.use(RouteAnggota);
 app.use(RoutePengembalian);
 app.use(RoutePengembalianDetail);
+app.use(RoutePeminjamanDetail);
 app.listen(PORT, () => {
   console.log(`Success`);
 });
