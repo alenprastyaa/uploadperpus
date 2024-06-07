@@ -7,6 +7,10 @@ import RouteAnggota from "./routes/RouteAnggota.js";
 import RoutePengembalian from "./routes/RoutePengembalian.js";
 import RoutePeminjamanDetail from "./routes/RoutePeminjamanDetail.js";
 import RoutePengembalianDetail from "./routes/RoutePengembalianDetail.js";
+import RouteRak from "./routes/RouteRak.js";
+import RoutePenerbit from "./routes/RouterPenerbit.js";
+import RoutePengarang from "./routes/RoutePengarang.js";
+import RouteBuku from "./routes/RouteBuku.js";
 
 const app = express();
 // const sessionStore = SequelizeStore(session.Store);
@@ -22,6 +26,10 @@ app.use(RouteAnggota);
 app.use(RoutePengembalian);
 app.use(RoutePengembalianDetail);
 app.use(RoutePeminjamanDetail);
+app.use(RouteRak);
+app.use(RoutePenerbit);
+app.use(RoutePengarang);
+app.use(RouteBuku);
 app.listen(PORT, () => {
   console.log(`Success`);
 });
