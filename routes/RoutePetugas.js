@@ -1,10 +1,13 @@
 import express from "express";
 
-import { createPetugas, getPetugas } from "../controllers/petugasController.js";
+import { createPetugas, getPetugas, deletePetugas, getPetugasById, updatePetugas } from "../controllers/petugasController.js";
 
 const router = express.Router();
 
 router.post("/petugas", createPetugas);
 router.get("/petugas", getPetugas);
+router.get("/petugas/:id", getPetugasById)
+router.update("/petugas/:id", updatePetugas)
+router.delete("/petugas/:id", deletePetugas)
 
 export default router;
