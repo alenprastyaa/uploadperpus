@@ -6,7 +6,7 @@ const router = express.Router();
 router.post("/pengembalianDetail", createPengembalianDetail);
 router.get("/pengembalianDetail", getPengembalianDetail);
 router.get("/pengembalianDetail/:id", getPengembalianDetailById)
-router.update("/pengembalianDetail/:id", updatePengembalianDetail)
+router.patch("/pengembalianDetail/:id", updatePengembalianDetail)
 router.delete("/pengembalianDetail/:id", deletePengembalianDetail)
 
 export default router;

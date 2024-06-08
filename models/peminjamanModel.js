@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Petugas from "./petugasModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -53,5 +54,10 @@ const Peminjaman = db.define(
     freezeTableName: true,
   }
 );
+
+// Petugas.hasMany(Peminjaman);
+// Peminjaman.belongsTo(Petugas,{foreignKey:"uuid"})
+
+// Peminjaman.belongsTo(Petugas,{foreignKey:"uuid",targetKey:"petugas_id"})
 
 export default Peminjaman;

@@ -16,6 +16,7 @@ export const getAnggotaById = async (req, res) => {
         uuid: req.params.id,
       },
     });
+    if(!response) return res.status(401).json({msg: "Anggota tidak ditemukan"})
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -45,7 +46,7 @@ export const updateAnggota = async (req, res) => {
         },
       }
     );
-    res.status(200).json({ msg: "Data berhasil dihapus", response });
+    res.status(200).json({ msg: "Data berhasil diupdate", response });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

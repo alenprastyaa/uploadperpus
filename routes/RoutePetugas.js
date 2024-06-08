@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/petugas", createPetugas);
 router.get("/petugas", getPetugas);
 router.get("/petugas/:id", getPetugasById)
-router.update("/petugas/:id", updatePetugas)
+router.patch("/petugas/:id", updatePetugas)
 router.delete("/petugas/:id", deletePetugas)
 
 export default router;
