@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/rak", createRak);
 router.get("/rak", getRak);
 router.get("/rak/:id", getRakById)
-router.update("/rak/:id", updateRak)
+router.patch("/rak/:id", updateRak)
 router.delete("/rak/:id", deleteRak)
 
 export default router;
