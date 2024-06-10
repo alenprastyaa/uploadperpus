@@ -12,11 +12,12 @@ export const getPetugas = async (req, res) => {
 };
 
 export const createPetugas = async (req, res) => {
-  const { username, password, nama, telp, alamat } = req.body;
+  const { username, petugas_id, password, nama, telp, alamat } = req.body;
   const hashPassword = await argon2.hash(password);
   try {
     await Petugas.create({
       username: username,
+      petugas_id: petugas_id,
       password: hashPassword,
       nama: nama,
       telp: telp,
@@ -44,7 +45,7 @@ export const getPetugasById = async (req, res) => {
 };
 
 export const updatePetugas = async (req, res) => {
-  const { username, password, nama, telp, alamat } = req.body;
+  const { username, petugas_id, password, nama, telp, alamat } = req.body;
   try {
     const resss = await Petugas.findOne({
       where: {
@@ -55,7 +56,7 @@ export const updatePetugas = async (req, res) => {
       return res.status(404).json({ msg: "Data Petugas tidak ditemukan" });
     const response = await Petugas.update(
       {
-        username, password, nama, telp, alamat
+        username, petugas_id, password, nama, telp, alamat
       },
       {
         where: {
@@ -74,7 +75,7 @@ export const deletePetugas = async (req, res) => {
   try {
     const resss = await Petugas.findOne({
       attributes: {
-        username, password, nama, telp, alamat
+        username, petugas_id, password, nama, telp, alamat
       },
       where: {
         uuid: req.params.id,

@@ -10,10 +10,11 @@ export const getPengembalian = async (req, res) => {
 };
 
 export const createPengembalian = async (req, res) => {
-  const { tanggal_pengembalian, denda, peminjaman_id, anggota_id, petugas_id } = req.body;
+  const { tanggal_pengembalian, pengembalian_id, denda, peminjaman_id, anggota_id, petugas_id } = req.body;
   try {
     await Pengembalian.create({
       tanggal_pengembalian: tanggal_pengembalian,
+      pengembalian_id: pengembalian_id,
       denda: denda,
       peminjaman_id: peminjaman_id,
       anggota_id: anggota_id,
@@ -41,7 +42,7 @@ export const getPengembalianByID = async (req, res) => {
 };
 
 export const updatePengembalian = async (req, res) => {
-  const { tanggal_pengembalian, denda, peminjaman_id, anggota_id, petugas_id } = req.body;
+  const { tanggal_pengembalian, pengembalian_id, denda, peminjaman_id, anggota_id, petugas_id } = req.body;
   try {
     const resss = await Pengembalian.findOne({
       where: {
@@ -67,11 +68,11 @@ export const updatePengembalian = async (req, res) => {
 };
 
 export const deletePengembalian = async (req, res) => {
-  const { tanggal_pengembalian, denda, peminjaman_id, anggota_id, petugas_id } = req.params;
+  const { tanggal_pengembalian, pengembalian_id, denda, peminjaman_id, anggota_id, petugas_id } = req.params;
   try {
     const resss = await Pengembalian.findOne({
       attributes: {
-        tanggal_pengembalian, denda, peminjaman_id, anggota_id, petugas_id
+        tanggal_pengembalian, pengembalian_id, denda, peminjaman_id, anggota_id, petugas_id
       },
       where: {
         uuid: req.params.id,
