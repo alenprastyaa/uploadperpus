@@ -55,9 +55,4 @@ const Peminjaman = db.define(
   }
 );
 
-// Petugas.hasMany(Peminjaman);
-// Peminjaman.belongsTo(Petugas,{foreignKey:"uuid"})
-
-// Peminjaman.belongsTo(Petugas,{foreignKey:"uuid",targetKey:"petugas_id"})
-
 export default Peminjaman;

@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Petugas from "./petugasModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -51,5 +52,6 @@ const Anggota = db.define(
     freezeTableName: true,
   }
 );
+
 
 export default Anggota;
