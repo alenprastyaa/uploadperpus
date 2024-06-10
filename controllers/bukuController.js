@@ -65,34 +65,41 @@ export const updateBuku = async (req, res) => {
 };
 
 export const deleteBuku = async (req, res) => {
-    const { nama, jenis_kelamin, alamat, telp } = req.params;
-    try {
-      const resss = await Buku.findOne({
-        attributes: {
-            judul,
-            tahun_terbit,
-            jumlah,
-            isbn,
-            pengarang_id,
-            penerbit_id,
-            kode_rak,
-        },
-        where: {
-          uuid: req.params.id,
-        },
-      });
-      if (!resss)
-        return res.status(404).json({ msg: "Buku tidak ditemukan" });
-      await Buku.destroy({
-        where: {
-          uuid: req.params.id,
-        },
-      });
-      res.status(200).json({ msg: "Data berhasil dihapus", resss });
-    } catch (error) {
-      res.status(500).json({ msg: error.message });
-    }
-  };
+  const {
+    judul,
+    tahun_terbit,
+    jumlah,
+    isbn,
+    pengarang_id,
+    penerbit_id,
+    kode_rak,
+  } = req.params;
+  try {
+    const resss = await Buku.findOne({
+      attributes: {
+        judul,
+        tahun_terbit,
+        jumlah,
+        isbn,
+        pengarang_id,
+        penerbit_id,
+        kode_rak,
+      },
+      where: {
+        uuid: req.params.id,
+      },
+    });
+    if (!resss) return res.status(404).json({ msg: "Buku tidak ditemukan" });
+    await Buku.destroy({
+      where: {
+        uuid: req.params.id,
+      },
+    });
+    res.status(200).json({ msg: "Data berhasil dihapus", resss });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
 
 export const createBuku = async (req, res) => {
   const {
@@ -105,7 +112,7 @@ export const createBuku = async (req, res) => {
     kode_rak,
   } = req.body;
   try {
-    await Peminjaman.create({
+    await Buku.create({
       judul: judul,
       tahun_terbit: tahun_terbit,
       jumlah: jumlah,

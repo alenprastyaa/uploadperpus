@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Buku from "./bukuModel.js";
+import Pengembalian from "./pengembalianModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -16,21 +18,20 @@ const PengembalianDetail = db.define(
     },
 
     pengembalian_id: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
       },
+    },
 
     buku_id: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
       },
-      
+    },
   },
   {
     freezeTableName: true,

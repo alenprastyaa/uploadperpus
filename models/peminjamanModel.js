@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import Petugas from "./petugasModel.js";
+import Anggota from "./anggotaModel.js";
 
 const { DataTypes } = Sequelize;
 

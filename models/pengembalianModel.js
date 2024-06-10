@@ -1,6 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import Petugas from "./petugasModel.js";
+import Anggota from "./anggotaModel.js";
+import Peminjaman from "./peminjamanModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -10,6 +12,13 @@ const Pengembalian = db.define(
     uuid: {
       type: DataTypes.STRING,
       defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    pengembalian_id: {
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -62,7 +71,5 @@ const Pengembalian = db.define(
     freezeTableName: true,
   }
 );
-Petugas.hasMany(Pengembalian);
-Pengembalian.belongsTo(Petugas, { foreignKey: "id" });
 
 export default Pengembalian;
