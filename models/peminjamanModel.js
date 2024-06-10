@@ -55,8 +55,4 @@ const Peminjaman = db.define(
   }
 );
 
-
-Petugas.hasMany(Peminjaman);
-Peminjaman.belongsTo(Petugas, { foreignKey: "id" });
-
 export default Peminjaman;
