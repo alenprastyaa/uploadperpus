@@ -26,7 +26,7 @@ export const getPengarangById = async (req, res) => {
 };
 
 export const updatePengarang = async (req, res) => {
-  const { nama, alamat, telp } = req.body;
+  const { nama, pengarang_id, alamat, telp } = req.body;
   try {
     const resss = await Pengarang.findOne({
       where: {
@@ -54,11 +54,12 @@ export const updatePengarang = async (req, res) => {
 };
 
 export const deletePengarang = async (req, res) => {
-  const { nama, alamat, telp } = req.params;
+  const { nama, pengarang_id, alamat, telp } = req.params;
   try {
     const resss = await Pengarang.findOne({
       attributes: {
         nama,
+        pengarang_id,
         alamat,
         telp,
       },
@@ -80,10 +81,11 @@ export const deletePengarang = async (req, res) => {
 };
 
 export const createPengarang = async (req, res) => {
-  const { nama, alamat, telp } = req.body;
+  const { nama, pengarang_id, alamat, telp } = req.body;
   try {
     await Pengarang.create({
       nama: nama,
+      pengarang_id: pengarang_id,
       alamat: alamat,
       telp: telp,
     });
