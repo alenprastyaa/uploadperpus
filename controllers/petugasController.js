@@ -1,10 +1,19 @@
-import { response } from "express";
+import Peminjaman from "../models/peminjamanModel.js";
+import Pengembalian from "../models/pengembalianModel.js";
 import Petugas from "../models/petugasModel.js";
-import argon2 from "argon2";
+import bcrypt from "bcrypt";
+import argon2, { hash } from "argon2";
 
 export const getPetugas = async (req, res) => {
   try {
-    const response = await Petugas.findAll();
+    const response = await Petugas.findAll({
+      include: {
+        model: Peminjaman,
+        include: {
+          model: Pengembalian,
+        },
+      },
+    });
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -12,23 +21,21 @@ export const getPetugas = async (req, res) => {
 };
 
 export const createPetugas = async (req, res) => {
-  const { username, petugas_id, password, nama, telp, alamat } = req.body;
-  const hashPassword = await argon2.hash(password);
+  const { username, password, nama, telp, alamat } = req.body;
+  const pw = await argon2.hash(password);
   try {
-    await Petugas.create({
+    Petugas.create({
       username: username,
-      petugas_id: petugas_id,
-      password: hashPassword,
+      password: pw,
       nama: nama,
       telp: telp,
       alamat: alamat,
     });
-    res.status(201).json({ msg: "Register Berhasil" });
+    res.status(201).json({ msg: "Pembuatan Petugas Berhasil" });
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
 };
-
 
 export const getPetugasById = async (req, res) => {
   try {
@@ -37,7 +44,8 @@ export const getPetugasById = async (req, res) => {
         uuid: req.params.id,
       },
     });
-    if (!response) return res.status(401).json({ msg: "Data Petugas Tidak ditemukan" })
+    if (!response)
+      return res.status(401).json({ msg: "Data Petugas Tidak ditemukan" });
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -45,7 +53,7 @@ export const getPetugasById = async (req, res) => {
 };
 
 export const updatePetugas = async (req, res) => {
-  const { username, petugas_id, password, nama, telp, alamat } = req.body;
+  const { username, password, nama, telp, alamat } = req.body;
   try {
     const resss = await Petugas.findOne({
       where: {
@@ -56,7 +64,11 @@ export const updatePetugas = async (req, res) => {
       return res.status(404).json({ msg: "Data Petugas tidak ditemukan" });
     const response = await Petugas.update(
       {
-        username, petugas_id, password, nama, telp, alamat
+        username,
+        password,
+        nama,
+        telp,
+        alamat,
       },
       {
         where: {
@@ -71,11 +83,15 @@ export const updatePetugas = async (req, res) => {
 };
 
 export const deletePetugas = async (req, res) => {
-  const { username, password, nama, telp, alamat } = req.params;
+  const { petugas_id, username, password, nama, telp, alamat } = req.params;
   try {
     const resss = await Petugas.findOne({
       attributes: {
-        username, petugas_id, password, nama, telp, alamat
+        username,
+        password,
+        nama,
+        telp,
+        alamat,
       },
       where: {
         uuid: req.params.id,

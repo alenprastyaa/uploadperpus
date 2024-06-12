@@ -1,8 +1,13 @@
 import Buku from "../models/bukuModel.js";
+import Pengarang from "../models/pengarangModel.js";
 
 export const getBuku = async (req, res) => {
   try {
-    const response = await Buku.findAll();
+    const response = await Buku.findAll({
+      include: {
+        model: Pengarang,
+      },
+    });
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -28,6 +33,7 @@ export const getBukuById = async (req, res) => {
 export const updateBuku = async (req, res) => {
   const {
     judul,
+    buku_id,
     tahun_terbit,
     jumlah,
     isbn,
@@ -45,6 +51,7 @@ export const updateBuku = async (req, res) => {
     const response = await Buku.update(
       {
         judul,
+        buku_id,
         tahun_terbit,
         jumlah,
         isbn,
@@ -67,6 +74,7 @@ export const updateBuku = async (req, res) => {
 export const deleteBuku = async (req, res) => {
   const {
     judul,
+    buku_id,
     tahun_terbit,
     jumlah,
     isbn,
@@ -78,6 +86,7 @@ export const deleteBuku = async (req, res) => {
     const resss = await Buku.findOne({
       attributes: {
         judul,
+        buku_id,
         tahun_terbit,
         jumlah,
         isbn,
@@ -104,6 +113,7 @@ export const deleteBuku = async (req, res) => {
 export const createBuku = async (req, res) => {
   const {
     judul,
+    buku_id,
     tahun_terbit,
     jumlah,
     isbn,
@@ -114,6 +124,7 @@ export const createBuku = async (req, res) => {
   try {
     await Buku.create({
       judul: judul,
+      buku_id: buku_id,
       tahun_terbit: tahun_terbit,
       jumlah: jumlah,
       isbn: isbn,

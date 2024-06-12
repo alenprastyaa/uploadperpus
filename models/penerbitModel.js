@@ -15,13 +15,13 @@ const Penerbit = db.define(
       },
     },
 
-    penerbit_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
+    // penerbit_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   validate: {
+    //     notEmpty: true,
+    //   },
+    // },
     nama: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -48,5 +48,7 @@ const Penerbit = db.define(
     freezeTableName: true,
   }
 );
+
+
 
 export default Penerbit;

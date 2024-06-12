@@ -22,13 +22,13 @@ const Pengarang = db.define(
                 notEmpty: true,
             },
         },
-        pengarang_id: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-            },
-        },
+        // pengarang_id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     validate: {
+        //         notEmpty: true,
+        //     },
+        // },
         alamat: {
             type: DataTypes.STRING,
             allowNull: false,

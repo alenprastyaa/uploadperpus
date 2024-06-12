@@ -1,18 +1,10 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
-
 const { DataTypes } = Sequelize;
 
 const KodeRak = db.define(
-  "kode_rak",
+  "rak",
   {
-    kode_rak: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
     lokasi: {
       type: DataTypes.STRING,
       allowNull: false,

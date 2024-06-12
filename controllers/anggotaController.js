@@ -1,8 +1,13 @@
 import Anggota from "../models/anggotaModel.js";
+import Peminjaman from "../models/peminjamanModel.js";
 
 export const getAnggota = async (req, res) => {
   try {
-    const response = await Anggota.findAll();
+    const response = await Anggota.findAll({
+      include: {
+        model: Peminjaman,
+      },
+    });
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -16,7 +21,8 @@ export const getAnggotaById = async (req, res) => {
         uuid: req.params.id,
       },
     });
-    if(!response) return res.status(401).json({msg: "Anggota tidak ditemukan"})
+    if (!response)
+      return res.status(401).json({ msg: "Anggota tidak ditemukan" });
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ msg: error.message });

@@ -26,6 +26,14 @@ const Buku = db.define(
       },
     },
 
+    buku_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+
     tahun_terbit: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -66,7 +74,7 @@ const Buku = db.define(
     },
 
     kode_rak: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -78,5 +86,16 @@ const Buku = db.define(
   }
 );
 
+Pengarang.hasOne(Buku, {
+  foreignKey: "pengarang_id",
+});
+
+Penerbit.hasOne(Buku, {
+  foreignKey: "penerbit_id",
+});
+
+KodeRak.hasOne(Buku, {
+  foreignKey: "kode_rak",
+});
 
 export default Buku;

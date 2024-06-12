@@ -26,7 +26,7 @@ export const getPenerbitById = async (req, res) => {
   };
 
   export const updatePenerbit = async (req, res) => {
-    const {  nama,  alamat, telp } = req.body;
+    const {  nama,   alamat, telp } = req.body;
     try {
       const resss = await Penerbit.findOne({
         where: {
@@ -38,6 +38,7 @@ export const getPenerbitById = async (req, res) => {
       const response = await Penerbit.update(
         {
           nama,
+          
           alamat,
           telp,
         },
@@ -54,12 +55,13 @@ export const getPenerbitById = async (req, res) => {
   };
 
   export const deletePenerbit = async (req, res) => {
-    const { nama, alamat, telp } =
+    const { nama,  alamat, telp } =
       req.params;
     try {
       const resss = await Penerbit.findOne({
         attributes: {
           nama,
+          
           alamat,
           telp,
         },

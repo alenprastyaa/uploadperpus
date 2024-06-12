@@ -1,8 +1,17 @@
+import Anggota from "../models/anggotaModel.js";
 import Peminjaman from "../models/peminjamanModel.js";
+import Pengembalian from "../models/pengembalianModel.js";
 
 export const getPeminjaman = async (req, res) => {
   try {
-    const response = await Peminjaman.findAll();
+    const response = await Peminjaman.findAll({
+      include: {
+        model: Anggota,
+        include: {
+          model: Pengembalian,
+        },
+      },
+    });
     res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ msg: error.message });
@@ -69,7 +78,8 @@ export const deletePeminjaman = async (req, res) => {
         uuid: req.params.id,
       },
     });
-    if (!resss) return res.status(404).json({ msg: "Peminjaman tidak ditemukan" });
+    if (!resss)
+      return res.status(404).json({ msg: "Peminjaman tidak ditemukan" });
     await Peminjaman.destroy({
       where: {
         uuid: req.params.id,
@@ -92,6 +102,6 @@ export const createPeminjaman = async (req, res) => {
     });
     res.status(201).json({ msg: "Peminjaman Berhasil" });
   } catch (error) {
-    res.status(400).json({ msg: error.message });
+    res.status(500).json({ msg: error.message });
   }
 };

@@ -15,7 +15,6 @@ const Anggota = db.define(
         notEmpty: true,
       },
     },
-
     nama: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -23,14 +22,6 @@ const Anggota = db.define(
         notEmpty: true,
       },
     },
-    kode_anggota: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
-
     jenis_kelamin: {
       type: DataTypes.ENUM("L", "P"),
       allowNull: false,
@@ -59,6 +50,5 @@ const Anggota = db.define(
     freezeTableName: true,
   }
 );
-
 
 export default Anggota;

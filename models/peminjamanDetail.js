@@ -16,7 +16,6 @@ const PeminjamanDetail = db.define(
         notEmpty: true,
       },
     },
-
     peminjaman_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -24,8 +23,7 @@ const PeminjamanDetail = db.define(
         notEmpty: true,
       },
     },
-
-    Buku_id: {
+    buku_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -38,10 +36,12 @@ const PeminjamanDetail = db.define(
   }
 );
 
-Peminjaman.hasMany(PeminjamanDetail);
-PeminjamanDetail.belongsTo(Peminjaman, { foreignKey: "id" });
+Peminjaman.hasOne(PeminjamanDetail, {
+  foreignKey: "peminjaman_id",
+});
 
-Buku.hasMany(PeminjamanDetail);
-PeminjamanDetail.belongsTo(Buku, { foreignKey: "id" });
+Buku.hasOne(PeminjamanDetail, {
+  foreignKey: "buku_id",
+});
 
 export default PeminjamanDetail;

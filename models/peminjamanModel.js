@@ -36,15 +36,14 @@ const Peminjaman = db.define(
     },
 
     anggota_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-
     petugas_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -55,5 +54,12 @@ const Peminjaman = db.define(
     freezeTableName: true,
   }
 );
+
+Anggota.hasOne(Peminjaman, {
+  foreignKey: "anggota_id",
+});
+Petugas.hasOne(Peminjaman, {
+  foreignKey: "petugas_id",
+});
 
 export default Peminjaman;

@@ -6,7 +6,7 @@ import Pengembalian from "./pengembalianModel.js";
 const { DataTypes } = Sequelize;
 
 const PengembalianDetail = db.define(
-  "PengembalianDetail",
+  "pengembalian_detail",
   {
     uuid: {
       type: DataTypes.STRING,
@@ -18,7 +18,7 @@ const PengembalianDetail = db.define(
     },
 
     pengembalian_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -26,16 +26,25 @@ const PengembalianDetail = db.define(
     },
 
     buku_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
   },
+
   {
     freezeTableName: true,
   }
 );
+
+Pengembalian.hasOne(PengembalianDetail, {
+  foreignKey: "pengembalian_id",
+});
+
+Buku.hasOne(PengembalianDetail, {
+  foreignKey: "buku_id",
+});
 
 export default PengembalianDetail;

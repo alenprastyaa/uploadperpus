@@ -17,13 +17,6 @@ const Pengembalian = db.define(
         notEmpty: true,
       },
     },
-    pengembalian_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
 
     tanggal_pengembalian: {
       type: DataTypes.DATE,
@@ -44,7 +37,7 @@ const Pengembalian = db.define(
     },
 
     peminjaman_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -52,7 +45,7 @@ const Pengembalian = db.define(
     },
 
     anggota_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -60,7 +53,7 @@ const Pengembalian = db.define(
     },
 
     petugas_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -71,5 +64,17 @@ const Pengembalian = db.define(
     freezeTableName: true,
   }
 );
+
+Peminjaman.hasOne(Pengembalian, {
+  foreignKey: "peminjaman_id",
+});
+
+Petugas.hasOne(Pengembalian, {
+  foreignKey: "petugas_id",
+});
+
+Anggota.hasOne(Pengembalian, {
+  foreignKey: "anggota_id",
+});
 
 export default Pengembalian;
