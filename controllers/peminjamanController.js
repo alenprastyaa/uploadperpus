@@ -7,9 +7,6 @@ export const getPeminjaman = async (req, res) => {
     const response = await Peminjaman.findAll({
       include: {
         model: Anggota,
-        include: {
-          model: Pengembalian,
-        },
       },
     });
     res.status(200).json(response);

@@ -16,7 +16,7 @@ const app = express();
 
 const PORT = "5000";
 
-db.sync();
+// db.sync();
 
 app.use(express.json());
 app.use(PetugasRoute);

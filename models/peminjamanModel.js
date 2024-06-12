@@ -58,6 +58,7 @@ const Peminjaman = db.define(
 Anggota.hasOne(Peminjaman, {
   foreignKey: "anggota_id",
 });
+
 Petugas.hasOne(Peminjaman, {
   foreignKey: "petugas_id",
 });
