@@ -24,18 +24,21 @@ export const createPetugas = async (req, res) => {
   const { username, password, nama, telp, alamat } = req.body;
   const pw = await argon2.hash(password);
   try {
-    Petugas.create({
-      username: username,
-      password: pw,
-      nama: nama,
-      telp: telp,
-      alamat: alamat,
-    });
-    res.status(201).json({ msg: "Pembuatan Petugas Berhasil" });
+    const response = await
+      Petugas.create({
+        username: username,
+        password: pw,
+        nama: nama,
+        telp: telp,
+        alamat: alamat,
+      });
+    res.status(201).json({ msg: "Pembuatan Petugas Berhasil", response });
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
 };
+
+
 
 export const getPetugasById = async (req, res) => {
   try {

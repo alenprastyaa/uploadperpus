@@ -10,13 +10,18 @@ import RouteRak from "./routes/RouteRak.js";
 import RoutePenerbit from "./routes/RouterPenerbit.js";
 import RoutePengarang from "./routes/RoutePengarang.js";
 import RouteBuku from "./routes/RouteBuku.js";
+import cors from 'cors'
+
 
 const app = express();
 // const sessionStore = SequelizeStore(session.Store);
 
 const PORT = "5000";
-
-// db.sync();
+app.use(cors({
+  credentials: true,
+  origin: '*'
+}));
+db.sync();
 
 app.use(express.json());
 app.use(PetugasRoute);

@@ -3,7 +3,7 @@ import Peminjaman from "../models/peminjamanModel.js";
 
 export const getPeminjamanDetail = async (req, res) => {
   try {
-    const response = await PeminjamanDetail.findAll({
+    const response = await PeminjamanDetail.findAll({ 
     });
     res.status(200).json(response);
   } catch (error) {

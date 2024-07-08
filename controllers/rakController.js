@@ -41,7 +41,7 @@ export const updateRak = async (req, res) => {
     try {
         const resss = await Rak.findOne({
             where: {
-                uuid: req.params.id,
+                id: req.params.id,
             },
         });
         if (!resss)
@@ -52,7 +52,7 @@ export const updateRak = async (req, res) => {
             },
             {
                 where: {
-                    uuid: req.params.id,
+                    id: req.params.id,
                 },
             }
         );
@@ -70,14 +70,14 @@ export const deleteRak = async (req, res) => {
                 kode_rak, lokasi
             },
             where: {
-                uuid: req.params.id,
+                id: req.params.id,
             },
         });
         if (!resss)
             return res.status(404).json({ msg: "Data Rak tidak ditemukan" });
         await Rak.destroy({
             where: {
-                uuid: req.params.id,
+                id: req.params.id,
             },
         });
         res.status(200).json({ msg: "Data berhasil dihapus", resss });
